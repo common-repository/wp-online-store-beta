@@ -1,0 +1,165 @@
+filename: admin/categories.php
+
+** around 793 number line this block  
+
+<?php
+    echo tep_draw_form('search', FILENAME_CATEGORIES, '', 'get');
+    echo HEADING_TITLE_SEARCH . ' ' . tep_draw_input_field('search');
+    echo tep_hide_session_id() . '</form>';
+?>
+
+is replaced  by this block :
+
+<?php
+    echo tep_draw_form('search', FILENAME_CATEGORIES, '', 'get');
+    echo HEADING_TITLE_SEARCH . ' ' . tep_draw_input_field('search');
+    echo tep_draw_hidden_field('submenu', 'categories');
+    echo tep_draw_hidden_field('page', 'WP_online_store');
+    echo tep_hide_session_id() . '</form>';
+?>
+
+** around 804 number line find this block 
+
+<?php
+    echo tep_draw_form('goto', FILENAME_CATEGORIES, '', 'get');
+    echo HEADING_TITLE_GOTO . ' ' . tep_draw_pull_down_menu('cPath', tep_get_category_tree(), $current_category_id, 'onchange="this.form.submit();"');
+    echo tep_hide_session_id() . '</form>';
+?>
+
+isreplaced by this block :
+
+<?php
+    echo tep_draw_form('goto', FILENAME_CATEGORIES, '', 'get');
+    echo HEADING_TITLE_GOTO . ' ' . tep_draw_pull_down_menu('cPath', tep_get_category_tree(), $current_category_id, 'onchange="this.form.submit();"');
+    echo tep_draw_hidden_field('submenu', 'categories');
+    echo tep_draw_hidden_field('page', 'WP_online_store');
+    echo tep_hide_session_id() . '</form>';
+?>
+  
+
+admin/includes/language/english.php
+
+this line is added : define('TEXT_INSTALL_GOLD_STORE', 'To add additional payment gateways <a href="http://wponlinestore.com/" target="__balnk">Click Here>></a>');
+
+checkout_payment.php
+
+the line around 131 if (isset($HTTP_GET_VARS['payment_error']) && is_object(${$HTTP_GET_VARS['payment_error']}) && ($error = ${$HTTP_GET_VARS['payment_error']}->get_error())) {
+is replaced by  if (isset($HTTP_GET_VARS['payment_error']) && is_object($GLOBALS[$HTTP_GET_VARS['payment_error']]) && ($error = $GLOBALS[$HTTP_GET_VARS['payment_error']]->get_error())) {
+
+
+
+includes/header
+** this line around 18 is blocked :   <div id="storeLogo"><?php echo '<a href="' . tep_href_link(FILENAME_DEFAULT) . '">' . tep_image(DIR_WS_IMAGES . 'store_logo.png', STORE_NAME) . '</a>'; ?></div> 
+
+** this block : 
+
+ <div id="headerShortcuts" >
+<?php
+  echo tep_draw_button(HEADER_TITLE_CART_CONTENTS . ($cart->count_contents() > 0 ? ' (' . $cart->count_contents() . ')' : ''), 'cart', tep_href_link(FILENAME_SHOPPING_CART)) .
+       tep_draw_button(HEADER_TITLE_CHECKOUT, 'triangle-1-e', tep_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL')) .
+       tep_draw_button(HEADER_TITLE_MY_ACCOUNT, 'person', tep_href_link(FILENAME_ACCOUNT, '', 'SSL'));
+
+  if (tep_session_is_registered('customer_id')) {
+    echo tep_draw_button(HEADER_TITLE_LOGOFF, null, tep_href_link(FILENAME_LOGOFF, '', 'SSL'));
+  }
+?>
+  </div>
+
+was removed and this block 
+
+ <div id="headerShortcuts" style="margin:0px;">
+<?php
+  echo tep_draw_button(HEADER_TITLE_CART_CONTENTS . ($cart->count_contents() > 0 ? ' (' . $cart->count_contents() . ')' : ''), 'cart', tep_href_link(FILENAME_SHOPPING_CART)) .
+       tep_draw_button(HEADER_TITLE_CHECKOUT, 'triangle-1-e', tep_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL')) .
+       tep_draw_button(HEADER_TITLE_MY_ACCOUNT, 'person', tep_href_link(FILENAME_ACCOUNT, '', 'SSL'));
+
+  if (tep_session_is_registered('customer_id')) {
+    echo tep_draw_button(HEADER_TITLE_LOGOFF, null, tep_href_link(FILENAME_LOGOFF, '', 'SSL'));
+  }
+?>
+  </div>
+
+is placed after this line :  <?php echo '&nbsp;&nbsp;' . $breadcrumb->trail(' &raquo; '); ?>
+arond line 30
+
+
+admin/included/boxes/configuration.php
+
+**this block is removed : 
+    array(
+        'code' => FILENAME_STORE_LOGO,
+        'title' => BOX_CONFIGURATION_STORE_LOGO,
+        'link' => tep_href_link(FILENAME_STORE_LOGO)
+      )
+
+
+includes/modules/boxes/bm_shopping_cart.php
+
+** around line 55 this line :
+ $cart_contents_string .= '</td><td valign="top"><a href="' . tep_href_link(FILENAME_PRODUCT_INFO, 'products_id=' . $products[$i]['id']) . '">';
+was replaced by 
+ $cart_contents_string .= '</td><td valign="top"><a href="' . tep_href_link(FILENAME_PRODUCT_INFO, 'products_id=' . str_replace(array('{','}'),array('-','_'),$products[$i]['id'])) . '">';
+
+includes/application_top.php
+** this block : 
+foreach($_POST as $key=>$val)
+  	$HTTP_POST_VARS[$key]=$val;
+  foreach($_GET as $key=>$val)
+	$HTTP_GET_VARS[$key]=$val;
+
+is replaced by this block :
+	    foreach($_POST as $key=>$val)
+  	$HTTP_POST_VARS[$key]=$val;
+  foreach($_GET as $key=>$val){
+  	if($key=="products_id")
+		$_GET[$key]=$HTTP_GET_VARS[$key]=str_replace(array('-','_'),array('{','}'),$val);	
+	else
+		$HTTP_GET_VARS[$key]=$val;	
+}	
+
+
+inclues/modules/boxes/bm_languages.php:
+this line here,
+$languages_string .= ' <a href="' . tep_href_link(basename($PHP_SELF), tep_get_all_get_params(array('language', 'currency')) . 'language=' . $key, $request_type) . '">' . tep_image(DIR_WS_LANGUAGES .  $value['directory'] . '/images/' . $value['image'], $value['name']) . '</a> ';
+is replaced by this line :
+$languages_string .= ' <a href="' . tep_href_link(basename($PHP_SELF), tep_get_all_get_params(array('language', 'currency')) . 'language=' . $key, $request_type) . '">' . tep_image(HTTP_SERVER.DIR_WS_HTTP_CATALOG.'includes/languages/' .  $value['directory'] . '/images/' . $value['image'], $value['name']) . '</a> ';
+
+
+inclues/modules/social_bookmarks/sb_email.php
+this line here ,
+return '<a href="' . tep_href_link(FILENAME_TELL_A_FRIEND, 'products_id=' . $HTTP_GET_VARS['products_id']) . '"><img src="images/social_bookmarks/' . $this->icon . '" border="0" title="' . tep_output_string_protected($this->public_title) . '" alt="' . tep_output_string_protected($this->public_title) . '" /></a>';
+is replaced by 
+return '<a href="' . tep_href_link(FILENAME_TELL_A_FRIEND, 'products_id=' . $HTTP_GET_VARS['products_id']) . '"><img src="'.HTTP_SERVER.DIR_WS_HTTP_CATALOG.'images/social_bookmarks/' . $this->icon . '" border="0" title="' . tep_output_string_protected($this->public_title) . '" alt="' . tep_output_string_protected($this->public_title) . '" /></a>';
+
+
+inclues/modules/social_bookmarks/sb_facebook.php
+this line here,
+return '<a href="http://www.facebook.com/share.php?u=' . urlencode(tep_href_link(FILENAME_PRODUCT_INFO, 'products_id=' . $HTTP_GET_VARS['products_id'], 'NONSSL', false)) . '" target="_blank"><img src="images/social_bookmarks/' . $this->icon . '" border="0" title="' . tep_output_string_protected($this->public_title) . '" alt="' . tep_output_string_protected($this->public_title) . '" /></a>';
+is replaced by 
+return '<a href="http://www.facebook.com/share.php?u=' . urlencode(tep_href_link(FILENAME_PRODUCT_INFO, 'products_id=' . $HTTP_GET_VARS['products_id'], 'NONSSL', false)) . '" target="_blank"><img src="'.HTTP_SERVER.DIR_WS_HTTP_CATALOG.'images/social_bookmarks/' . $this->icon . '" border="0" title="' . tep_output_string_protected($this->public_title) . '" alt="' . tep_output_string_protected($this->public_title) . '" /></a>';
+
+
+inclues/modules/social_bookmarks/sb_google_buzz.php
+this line here,
+return '<a href="http://www.google.com/buzz/post?url=' . urlencode(tep_href_link(FILENAME_PRODUCT_INFO, 'products_id=' . $HTTP_GET_VARS['products_id'], 'NONSSL', false)) . '" target="_blank"><img src="images/social_bookmarks/' . $this->icon . '" border="0" title="' . tep_output_string_protected($this->public_title) . '" alt="' . tep_output_string_protected($this->public_title) . '" /></a>';
+is replaced by 
+return '<a href="http://www.google.com/buzz/post?url=' . urlencode(tep_href_link(FILENAME_PRODUCT_INFO, 'products_id=' . $HTTP_GET_VARS['products_id'], 'NONSSL', false)) . '" target="_blank"><img src="'.HTTP_SERVER.DIR_WS_HTTP_CATALOG.'images/social_bookmarks/' . $this->icon . '" border="0" title="' . tep_output_string_protected($this->public_title) . '" alt="' . tep_output_string_protected($this->public_title) . '" /></a>';
+
+
+inclues/modules/social_bookmarks/sb_twitter.php
+this line here,
+return '<a href="http://twitter.com/home?status=' . urlencode(tep_href_link(FILENAME_PRODUCT_INFO, 'products_id=' . $HTTP_GET_VARS['products_id'], 'NONSSL', false)) . '" target="_blank"><img src="images/social_bookmarks/' . $this->icon . '" border="0" title="' . tep_output_string_protected($this->public_title) . '" alt="' . tep_output_string_protected($this->public_title) . '" /></a>';
+is replaced by 
+return '<a href="http://twitter.com/home?status=' . urlencode(tep_href_link(FILENAME_PRODUCT_INFO, 'products_id=' . $HTTP_GET_VARS['products_id'], 'NONSSL', false)) . '" target="_blank"><img src="'.HTTP_SERVER.DIR_WS_HTTP_CATALOG.'images/social_bookmarks/' . $this->icon . '" border="0" title="' . tep_output_string_protected($this->public_title) . '" alt="' . tep_output_string_protected($this->public_title) . '" /></a>';
+
+inclues/modules/social_bookmarks/sb_digg.php
+this line here,
+return '<a href="http://digg.com/submit?url=' . urlencode(tep_href_link(FILENAME_PRODUCT_INFO, 'products_id=' . $HTTP_GET_VARS['products_id'], 'NONSSL', false)) . '" target="_blank"><img src="images/social_bookmarks/' . $this->icon . '" border="0" title="' . tep_output_string_protected($this->public_title) . '" alt="' . tep_output_string_protected($this->public_title) . '"/></a>';
+is replaced by 
+return '<a href="http://digg.com/submit?url=' . urlencode(tep_href_link(FILENAME_PRODUCT_INFO, 'products_id=' . $HTTP_GET_VARS['products_id'], 'NONSSL', false)) . '" target="_blank"><img src="'.HTTP_SERVER.DIR_WS_HTTP_CATALOG.'images/social_bookmarks/' . $this->icon . '" border="0" title="' . tep_output_string_protected($this->public_title) . '" alt="' . tep_output_string_protected($this->public_title) . '"/></a>';
+
+  
+
+ext/jquery/ui/redmond/jquery-ui-1.8.6.css
+this line tdb1,#tdb2,#tdb3,a#tdb4{border:0px;background:none;} is replaced by 
+#headerShortcuts #tdb1,#headerShortcuts #tdb2,#headerShortcuts #tdb3,#headerShortcuts #tdb4{border:0px;background:none;}

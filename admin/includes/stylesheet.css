@@ -1,0 +1,472 @@
+/*
+
+  $Id$
+
+
+
+  osCommerce, Open Source E-Commerce Solutions
+
+  http://www.oscommerce.com
+
+
+
+  Copyright (c) 2010 osCommerce
+
+
+
+  Released under the GNU General Public License
+
+*/
+
+
+
+/* links */
+
+#wpbody-content a { font-family: Verdana, Arial, sans-serif; font-size: 10px; color: #000000; font-weight: normal; text-decoration: none; }
+
+#wpbody-content a:hover { text-decoration: underline; }
+
+
+
+#wpbody-content a.headerLink { font-family: Verdana, Arial, sans-serif; font-size: 10px; color: #ffffff; font-weight: bold; text-decoration: none; }
+
+#wpbody-content a.headerLink:hover { text-decoration: underline; }
+
+
+
+#wpbody-content a.menuBoxHeadingLink { font-size: 10px; color: #616060; font-weight: bold; text-decoration: none; }
+
+#wpbody-content a.menuBoxHeadingLink:hover { }
+
+
+
+#wpbody-content a.menuBoxContentLink { font-family: Verdana, Arial, sans-serif; font-size: 10px; color: #616060; font-weight: normal; text-decoration: none; }
+
+#wpbody-content a.menuBoxContentLink:hover { text-decoration: underline; }
+
+
+
+#wpbody-content a.splitPageLink { font-family: Verdana, Arial, sans-serif; font-size: 10px; color: #0000FF; font-weight: normal; text-decoration: none; }
+
+#wpbody-content a.splitPageLink:hover { text-decoration: underline; background-color: #FFFF33; }
+
+
+
+/* menu box */
+
+.menuBoxHeading { font-family: Verdana, Arial, sans-serif; font-size: 10px; color: #616060; background-color: #ffffff; }
+
+.menuBoxContent { font-family: Verdana, Arial, sans-serif; font-size: 10px; color: #616060; }
+
+
+
+/* page */
+
+body { background-color: #ffffff; color: #000000; margin: 0px; }
+
+.headerBar { background-color: #B3BAC5; }
+
+.headerBarContent { font-family: Verdana, Arial, sans-serif; font-size: 10px; color: #ffffff; font-weight: bold; padding: 2px; }
+
+.columnLeft { background-color: #F0F1F1; border-color: #999999; border-width: 1px; border-style: solid; padding: 2px; }
+
+.pageHeading { font-family: Verdana, Arial, sans-serif; font-size: 18px; color: #727272; font-weight: bold; }
+
+
+
+/* data table */
+
+.dataTableHeadingRow {
+	background-image: url("../../admin/images/gray-grad.png");
+	background-attachment: scroll;
+	background-color: #DFDFDF;
+	background-position: left top;
+	background-repeat: repeat-x;
+    border: 1px solid #E1E1E1;
+    border-radius: 8px 8px 8px 8px;
+	color: #333333;
+	height: 36px;
+}
+
+.dataTableHeadingContent {    
+
+    color: #21759B;
+
+    font-family: Arial,Helvetica,sans-serif;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    padding: 5px;
+		border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-left-style: solid;
+	border-top-color: #e6e6e6;
+	border-right-color: #e6e6e6;
+	border-bottom-color: #e6e6e6;
+	border-left-color: #e6e6e6; }
+
+.dataTableRow { background-color: #F0F1F1; }
+
+.dataTableRowSelected { background-color: #DEE4E8; }
+
+.dataTableRowOver { background-color: #FFFFFF; cursor: pointer; cursor: hand; }
+
+.dataTableContent {
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 10px;
+	color: #000000;
+	padding-left: 5px;
+		padding-right: 5px;
+			border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-left-style: solid;
+	border-top-color: #e6e6e6;
+	border-right-color: #e6e6e6;
+	border-bottom-color: #e6e6e6;
+	border-left-color: #e6e6e6;
+}
+
+
+
+/* info box */
+
+.infoBoxHeading {
+	background-image: url("../../admin/images/gray-grad.png");
+	background-attachment: scroll;
+	background-color: #DFDFDF;
+	background-position: left top;
+	background-repeat: repeat-x;
+	height: 36px;
+	color: #21759B;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	padding-left: 5px;
+	padding-right: 5px;
+	border-right-width: 1px;
+	border-left-width: 1px;
+	border-right-style: solid;
+	border-left-style: solid;
+	border-top-color: #e6e6e6;
+	border-right-color: #e6e6e6;
+	border-bottom-color: #e6e6e6;
+	border-left-color: #e6e6e6;
+}
+	
+
+.infoBoxContent {
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 10px;
+	color: #000000;
+	background-color: #DEE4E8;
+	padding-left: 4px;
+	padding-bottom: 5px;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-left-style: solid;
+	border-top-color: #e6e6e6;
+	border-right-color: #e6e6e6;
+	border-bottom-color: #e6e6e6;
+	border-left-color: #e6e6e6;
+}
+
+
+
+/* message box */
+
+
+
+.messageBox { font-family: Verdana, Arial, sans-serif; font-size: 10px; }
+
+.messageStackError, .messageStackWarning { font-family: Verdana, Arial, sans-serif; font-size: 10px; background-color: #ffb3b5; }
+
+.messageStackSuccess { font-family: Verdana, Arial, sans-serif; font-size: 10px; background-color: #99ff00; }
+
+
+
+/* forms */
+
+CHECKBOX, INPUT, RADIO, SELECT, TEXTAREA, FILE { font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+
+FORM { display: inline; }
+
+
+
+/* account */
+
+.formArea { background-color: #f1f9fe; border-color: #7b9ebd; border-style: solid; border-width: 1px; }
+
+.formAreaTitle { font-family: Tahoma, Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+
+
+
+/* attributes */
+
+.attributes-odd { background-color: #f4f7fd; }
+
+.attributes-even { background-color: #ffffff; }
+
+
+
+/* miscellaneous */
+
+.specialPrice { color: #ff0000; }
+
+.oldPrice { text-decoration: line-through; }
+
+.fieldRequired { font-family: Verdana, Arial, sans-serif; font-size: 10px; color: #ff0000; }
+
+.smallText { font-family: Verdana, Arial, sans-serif; font-size: 10px; }
+
+.main { font-family: Verdana, Arial, sans-serif; font-size: 12px; }
+
+.errorText { font-family: Verdana, Arial, sans-serif; font-size: 10px; color: #ff0000; }
+
+
+
+/* new messageStack styles */
+
+.secInfo, .secSuccess, .secWarning, .secError {
+
+  border: 1px solid;
+
+  margin: 10px 0px;
+
+  padding: 5px 10px 5px 50px;
+
+  background-repeat: no-repeat;
+
+  background-position: 10px center;
+
+  border-radius: 10px;
+
+  -moz-border-radius: 10px;
+
+  -webkit-border-radius: 10px;
+
+}
+
+
+
+.secInfo {
+
+  border-color: #00529B;
+
+  background-image: url('../images/ms_info.png');
+
+  background: url('../images/ms_info.png') no-repeat 10px center, url('../images/ms_info_bg.png') repeat-x; /* css3 multiple backgrounds */
+
+  background-color: #BDE5F8;
+
+}
+
+
+
+.secSuccess {
+
+  border-color: #4F8A10;
+
+  background-image: url('../images/ms_success.png');
+
+  background: url('../images/ms_success.png') no-repeat 10px center, url('../images/ms_success_bg.png') repeat-x; /* css3 multiple backgrounds */
+
+  background-color: #DFF2BF;
+
+}
+
+
+
+.secWarning {
+
+  border-color: #9F6000;
+
+  background-color: #FEEFB3;
+
+  background-image: url('../images/ms_warning.png');
+
+  background: url('../images/ms_warning.png') no-repeat 10px center, url('../images/ms_warning_bg.png') repeat-x; /* css3 multiple backgrounds */
+
+  background-color: #FEEFB3;
+
+width:566px;
+
+}
+
+
+
+.secError {
+
+  border-color: #D8000C;
+
+  background-image: url('../images/ms_error.png');
+
+  background: url('../images/ms_error.png') no-repeat 10px center, url('../images/ms_error_bg.png') repeat-x; /* css3 multiple backgrounds */
+
+  background-color: #FFBABA;
+
+}
+
+
+
+.secInfo p, .secSuccess p, .secWarning p, .secError p {
+
+  padding: 2px;
+
+}
+
+
+
+#adminAppMenu {
+
+  float: left;
+
+  width: 150px;
+
+  padding: 5px;
+
+}
+
+
+
+#adminAppMenu h3 {
+
+}
+
+
+
+#adminAppMenu ul {
+
+  list-style: none;
+
+  margin: -5px 0 -5px -10px;
+
+  padding: 0;
+
+}
+
+
+
+#contentText {
+
+  margin-left: 160px;width:99%;
+
+}
+
+
+
+/* Custom jQuery UI */
+
+.ui-widget { font-family: Lucida Grande, Lucida Sans, Arial, sans-serif; font-size: 11px; }
+
+
+
+/* buttons */
+
+
+
+.tdbLink a { }
+
+
+
+.tdbLink button { }
+
+
+.tdtext {
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 10px;
+	color: #000000;
+	padding-left: 5px;
+	padding-right: 5px;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-top-color: #e6e6e6;
+	border-right-color: #e6e6e6;
+	border-bottom-color: #e6e6e6;
+}
+#wpbody-content a {
+    color: #21759B;
+    font-family: Verdana,Arial,sans-serif;
+    font-size: 12px;
+    font-weight: normal;
+    text-decoration: none;
+}
+#wpbody-content a:focus{
+    color: #D54E21;
+    font-family: Verdana,Arial,sans-serif;
+    font-size: 12px;
+    font-weight: normal;
+    text-decoration: none;
+}
+#wpbody-content a:hover {
+    color: #D54E21;
+    font-family: Verdana,Arial,sans-serif;
+    font-size: 12px;
+    font-weight: normal;
+    text-decoration: underline;
+}
+.inside {
+    color: #666666;
+    font-family: Verdana,Arial,sans-serif;
+    font-size: 12px;
+    font-weight: normal;
+    text-decoration: none;
+}
+
+.redHeading {
+    color: #FF0000;
+    font-family: Verdana,Arial,sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.round_box{ width:255px; border:1px solid #dfdfdf; }
+.round_box_head{ font-family:Arial; font-weight:bold; background:url(../images/box_head_bg.jpg) top center repeat-x; border-bottom:1px solid #dfdfdf; height:29px; line-height:29px; width:240px; padding:0 0 0 15px; font-weight;bold; font-size:12px; color:#000;}
+.round_box_head2{
+	font-family:Arial;
+	font-weight:bold;
+	background:url(../images/box_head_bg.jpg) top center repeat-x;
+	height:29px;
+	line-height:29px;
+	width:500px;
+	padding:0 0 0 15px;
+    font-weight:bold; 		
+	font-size:12px;
+	color:#000;
+	border: 1px solid #dfdfdf;
+}
+.round_box_mid{ background:#f6f6f6; width:235px;  padding:10px;}
+.round_box_mid p { color:#000;font-family:Arial; padding: 0 0 8px 0; margin:0px;}
+.round_box_mid p a{ color:#4b75aa; text-decoration:none; font-size:12px; }
+
+.round_box2{ width:520px;}
+.round_box_nav{ width:520px height:29px; height:29px;border-top:1px solid #dfdfdf;border-right:1px solid #dfdfdf; border-left:1px solid #dfdfdf;background:#ececec url(../images/box_head_bg1.jpg) top center repeat-x;  }
+.round_box_nav ul{ margin:0px; padding:0px;}
+.round_box_nav ul li{ list-style:none; margin:0px; font-weight:bold; float:left;width:117px;text-align:left; display:block; text-decoration:none; line-height:29px; color:#000; font-size:12px; font-family:Arial; padding:0 0 0 10px; border-right:1px solid #d0d0d0;}
+.round_box_cnt{background:#f8f8f8;width:520px; float:left;}
+.round_box_cnt table{ margin:0px; padding:0px;}
+.round_box_cnt table td{
+	list-style:none;
+	float:left;
+	width:117px;
+	text-align:left;
+	color:#999999;
+	font-size:12px;
+	font-family:Arial;
+	padding:3px 0 3px 10px;
+}
+
+
+/* Extra product fields */
+.error {color: black; background-color: red;}
+.warning {color: black; background-color: yellow;}
+
+

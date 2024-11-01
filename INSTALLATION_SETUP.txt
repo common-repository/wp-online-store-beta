@@ -1,0 +1,53 @@
+WP Online Store.
+
+WP Online Store requires :
+PHP 5+
+MySQL 5+
+
+WordPress 3 and 3.1 can both run with PHP 4 / MySQL 4 but we recommended version 5 for both 
+
+the best hosting condition would be: 
+PHP version 5.2.4 or greater
+MySQL version 5.0.15 or greater
+WordPress 3.2 or higher
+
+
+Installation:
+ 
+1: The easy way.
+Log into your WordPress admin area, go to Plugins, click Add New, then search for "WP Online Store".  After finding us simply click on "install now", click OK in the pop up and you're done.	
+
+2: Installing directly using zip file method.
+Download WP Online Store zip file to your computer from (http://www.wponlinestore.com/download). 
+Now log into your WordPress admin area, select Plugins, click Add New, then click "upload" in the top list of options.
+Using "browse" find the downloaded WP Online Store zip file on your computer, upload it and click "Install Now". 
+After the plugin is installed, click "activate" and you're done.
+
+NOTE:  Some hosting servers have specific file upload limits around 2MB  its possible you may get an error depending on your hosting company's server settings. You can either increase the upload limit (if you know what you're doing) or just unzip the folder and use the FTP method below.
+
+3: To install plugin manually via FTP or similar:
+Download the WP Online Store plugin zip file to your computer from (http://www.wponlinestore.com/download).
+Unzip the file.
+Then using whatever FTP program you like, upload the whole folder (WP_online_store) to the /wp-content/plugins/ folder on your site.
+Log into your WordPress admin area, go to Plugins, click on Installed Plugins.
+Scroll down to find WP online store and activate.
+
+
+Finally: Displaying your osCommerce store on your site.
+
+Two very easy methods:
+1. Create a new page and add the following short code. [WP_online_store].... you're done.
+2. Create a new page and in the page editor icon area (WYSIWYG) you will see a new button with a shopping cart icon...just click it......you're done.
+
+
+== Frequently Asked Questions ==
+
+Please visit [the F.A.Q area on our plugin's website](http://www.wponlinestore.com/f-a-q) for F.A.Q's
+
+== Screenshots ==
+
+Please visit the [Demo Store page on our site](http://www.wponlinestore.com/demo/) for screenshots and live store demo.
+
+== Community Support Forums ==
+
+Please visit (and participate in) the WP Online Store forum (http://www.wponlinestore.com/mingle). 

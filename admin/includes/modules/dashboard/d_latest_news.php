@@ -1,0 +1,84 @@
+<?php
+/*
+  $Id$
+
+  osCommerce, Open Source E-Commerce Solutions
+  http://www.oscommerce.com
+
+  Copyright (c) 2010 osCommerce
+
+  Released under the GNU General Public License
+*/
+
+  class d_latest_news {
+    var $code = 'd_latest_news';
+    var $title;
+    var $description;
+    var $sort_order;
+    var $enabled = false;
+
+    function d_latest_news() {
+      $this->title = MODULE_ADMIN_DASHBOARD_LATEST_NEWS_TITLE;
+      $this->description = MODULE_ADMIN_DASHBOARD_LATEST_NEWS_DESCRIPTION;
+
+      if ( defined('MODULE_ADMIN_DASHBOARD_LATEST_NEWS_STATUS') ) {
+        $this->sort_order = MODULE_ADMIN_DASHBOARD_LATEST_NEWS_SORT_ORDER;
+        $this->enabled = (MODULE_ADMIN_DASHBOARD_LATEST_NEWS_STATUS == 'True');
+      }
+    }
+
+    function getOutput() {
+      if (!class_exists('lastRSS')) {
+        include(DIR_WS_CLASSES . 'rss.php');
+      }
+
+      $rss = new lastRSS;
+      $rss->items_limit = 5;
+      $rss->cache_dir = DIR_FS_CACHE;
+      $rss->cache_time = 86400;
+      $feed = $rss->get('http://www.help.wponlinestore.com/rss/index.php?/News/Feed/Index/0');
+
+      $output = '<div class="round_box_head">'.MODULE_ADMIN_DASHBOARD_LATEST_NEWS_TITLE.'</div>
+				 <div class="round_box_mid"><table border="0" width="95%" cellspacing="1" cellpadding="1"><ul style="padding:2px">';
+
+      if (is_array($feed) && !empty($feed)) {
+
+        foreach ($feed['items'] as $item) {
+		   //- ' F j, Y", strtotime($item['pubDate'])) . '
+          $output .= '  ' .
+                     '    <li><a href="' . $item['link'] . '" target="_blank">' . $item['title'] . '</a> </li>' .
+                     '  ';
+        }
+      } else {
+        $output .= '  <tr class="dataTableRow">' .
+                   '    <td class="" colspan="2">' . MODULE_ADMIN_DASHBOARD_LATEST_NEWS_FEED_ERROR . '</td>' .
+                   '  </tr>';
+      }
+
+      $output .= '</ul></table></div></div>';
+
+      return $output;
+    }
+
+    function isEnabled() {
+      return $this->enabled;
+    }
+
+    function check() {
+      return defined('MODULE_ADMIN_DASHBOARD_LATEST_NEWS_STATUS');
+    }
+
+    function install() {
+      tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Enable Latest News Module', 'MODULE_ADMIN_DASHBOARD_LATEST_NEWS_STATUS', 'True', 'Do you want to show the latest osCommerce News on the dashboard?', '6', '1', 'tep_cfg_select_option(array(\'True\', \'False\'), ', now())");
+      tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Sort Order', 'MODULE_ADMIN_DASHBOARD_LATEST_NEWS_SORT_ORDER', '0', 'Sort order of display. Lowest is displayed first.', '6', '0', now())");
+    }
+
+    function remove() {
+      tep_db_query("delete from " . TABLE_CONFIGURATION . " where configuration_key in ('" . implode("', '", $this->keys()) . "')");
+    }
+
+    function keys() {
+      return array('MODULE_ADMIN_DASHBOARD_LATEST_NEWS_STATUS', 'MODULE_ADMIN_DASHBOARD_LATEST_NEWS_SORT_ORDER');
+    }
+  }
+?>
